@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    div{
+        display: flex;
+        flex-direction: column;
+        gap:10px;
+    }
+    span{
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        input{
+            height: 20px;
+        }
+    } 
+</style>
+<body>
+     <div>
+        <span>
+            <p>1st number:</p>
+            <input type="number" id="num1">
+        </span>
+        <span>
+            <p>2nd number:</p>
+            <input type="number" id="num2">
+        </span>
+        <span>
+            <p>3rd number:</p>
+            <input type="number" id="num3">
+        </span>
+        <span>
+            <button id="hasil">Hasil</button>
+            <button id="orta">Ededi orta</button>
+            <button id="cem">Cem</button>
+            <button id="min">Minimum</button>
+            <button id="max">Maximum</button>
+            <button id="eq">Kvadratik tenlik, discriminant ve kokleri</button>
+        </span>
+        <h2 id="result"></h2>
+        <h2 id="values"></h2>
+    </div>
+    <script>
+        const hasil=document.getElementById("hasil")
+        const orta=document.getElementById("orta")
+        const cem=document.getElementById("cem")
+        const min=document.getElementById("min")
+        const max=document.getElementById("max")
+        const eq=document.getElementById("eq")
+        const num1=document.getElementById("num1")
+        const num2=document.getElementById("num2")
+        const num3=document.getElementById("num3")
+        const result=document.getElementById("result")
+        const values=document.getElementById("values")
+        let x=document.getElementById("x")
+        hasil.onclick=function(){
+            let answer= +num1.value * +num2.value* +num3.value
+            result.innerHTML="The result is:" + answer
+        }
+        orta.onclick=function(){
+            let answer=(+num1.value + +num2.value + +num3.value)/3
+            result.innerHTML="The result is:" + answer
+        }
+        cem.onclick=function(){
+            let answer=+num1.value + +num2.value + +num3.value
+            result.innerHTML="The result is:" + answer
+        }
+        min.onclick=function(){
+            let answer=Math.min(num1.value,num2.value,num3.value)
+            result.innerHTML="The result is:" + answer
+        }
+        max.onclick=function(){
+            let answer=Math.max(num1.value,num2.value,num3.value)
+            result.innerHTML="The result is:" + answer
+        }
+        eq.onclick=function(){
+            let  discriminant= (+num1.value)**2-2*(+num2.value)*(+num3.value)
+            result.innerHTML="<p>"+num1.value+"x"+"<sup>2</sup>" + "+"+ +num2.value+"x"+ "+"+ +num3.value + "=" + "0" + "</p>" + "<p>" + "Discriminant:" +discriminant + "</p>"
+             if( discriminant > 0 ){
+                let x1= (((-num2.value)+Math.sqrt(+discriminant))/(2*(+num1.value))).toFixed(2)
+                let x2= (((-num2.value)-Math.sqrt(+discriminant))/(2*(+num1.value))).toFixed(2)
+                values.innerHTML="There are two roots:"+ "x" + "<sub>1</sub>" + "=" + +x1 +"<br>" + "x" + "<sub>2</sub>" + "=" + +x2
+             }
+             else if(discriminant=0){
+                let x= ((-num2.value+Math.sqrt(+discriminant))/(2*(+num1.value))).toFixed(2)
+                values.innerHTML="There is one root:"+ +x
+             }
+             else{
+                values.innerHTML="There is not any root"
+             }
+        }
+
+    </script> 
+</body>
+
+</html>
